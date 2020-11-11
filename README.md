@@ -31,6 +31,7 @@
 <img src="https://user-images.githubusercontent.com/61219556/98794126-42f5af80-243b-11eb-8f91-8aa742186803.PNG" width="500" height="auto">
 
 #### 1. Membuat Domain alamat http://semeruyyy.pw
+a) Buka 
 #### 2. Membuat alias dari http://www.semeruyyy.pw
 #### 3. Membuat subdomain http://penanjakan.semeruyyy.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO 
 #### 4. Reverse domain untuk domain utama
