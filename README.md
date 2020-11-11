@@ -18,6 +18,10 @@
   - File/folder pendukung untuk web http://naik.gunung.semeruyyy.pw bisa di download dengan cara:
   wget 10.151.36.202/naik.gunung.semeru.pw.zip
   
+  ## Soal
+  <img src="https://user-images.githubusercontent.com/61219556/98789471-ea231880-2434-11eb-8375-b9219c917a68.PNG" width="500" height="auto">
+ 
+  
  
   
   
