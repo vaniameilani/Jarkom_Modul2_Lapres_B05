@@ -27,7 +27,7 @@
 - Klien GRESIK & Klien SIDOARJO
 - Router SURABAYA
 
-** Tahap awal sebelum membuat DNS sesuai dengan modul Pengenalan UML, hanya saja ditambahkan server PROBOLINGGO pada topologi **
+**Tahap awal sebelum membuat DNS sesuai dengan modul Pengenalan UML, hanya saja ditambahkan server PROBOLINGGO pada topologi**
 <img src="https://user-images.githubusercontent.com/61219556/98794126-42f5af80-243b-11eb-8f91-8aa742186803.PNG" width="500" height="auto">
 
 #### 1. Membuat Domain alamat http://semeruyyy.pw
