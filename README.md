@@ -11,9 +11,9 @@
 4. IP Server Probolinggo : NID_DMZ_tiap_kelompok + 4 (Untuk IP yang lainnya tetap sama).
 5. Jika tidak bisa menginstall php5 maka gunakan php7.0.
 6. File pendukung:
-a. File/folder pendukung untuk web http://semeruyyy.pw bisa di download dengan cara:
+- File/folder pendukung untuk web http://semeruyyy.pw bisa di download dengan cara:
 wget 10.151.36.202/semeru.pw.zip
-b. File/folder pendukung untuk web http://penanjakan.semeruyyy.pw bisa di download dengan cara:
+- File/folder pendukung untuk web http://penanjakan.semeruyyy.pw bisa di download dengan cara:
 wget 10.151.36.202/penanjakan.semeru.pw.zip
-c. File/folder pendukung untuk web http://naik.gunung.semeruyyy.pw bisa di download dengan cara:
+- File/folder pendukung untuk web http://naik.gunung.semeruyyy.pw bisa di download dengan cara:
 wget 10.151.36.202/naik.gunung.semeru.pw.zip
