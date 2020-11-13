@@ -37,7 +37,6 @@
 - Install aplikasi bind9 pada UML MALANG dengan
    `apt-get install bind9 -y`.
 - Buka file dengan perintah `nano /etc/bind/named.conf.local`, lalu isi configurasi domain dengan syntax sebagai berikut :
-
 `zone "semerub05.pw" {
 	type master;
 	file "/etc/bind/jarkom/semerub05.pw";
@@ -56,6 +55,18 @@
 - Restart bind9 untuk meng-update perubahan dengan perintah `service bind9 restart`.
 
 #### 2. Membuat alias dari http://www.semeruyyy.pw
+- Pada UML MALANG, buka file **semerub05.pw** dan tambahkan configurasi berupa **record CNAME** seperti berikut	:
+
+<img src="https://user-images.githubusercontent.com/61219556/99037822-123a8500-25b7-11eb-8ddb-1dcc9f3b4f49.PNG" width="500" height="auto">
+
+- Restart bind9 dengan perintah 
+  `service bind9 restart`.
+- Lalu, buka UML client yaitu GRESIK atau SIDOARJO untuk melakukan `ping semerub05.pw` dan hasil harus mengarah ke host dengan IP MALANG.
+
+<img src="https://user-images.githubusercontent.com/61219556/99038420-0d2a0580-25b8-11eb-8743-eed75a6288ee.PNG" width="500" height="auto">
+
+<img src="https://user-images.githubusercontent.com/61219556/99038422-0e5b3280-25b8-11eb-9e2f-82ef0f051182.PNG" width="500" height="auto">
+
 #### 3. Membuat subdomain http://penanjakan.semeruyyy.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO 
 #### 4. Reverse domain untuk domain utama
 #### 5. Membuat DNS Server Slave pada MOJOKERTO
