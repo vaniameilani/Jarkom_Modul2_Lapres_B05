@@ -91,13 +91,11 @@ zone "semerub05.pw" {
 - Restart bind9 untuk menyimpan perubahan yang ada.
 - Untuk mengecek apakah konfigurasi sudah benar atau belum, lakukan perintah berikut pada UML client GRESIK atau SIDOARJO . <br>
 `
-// Install package dnsutils
-// Pastikan nameserver telah dikembalikan ke settingan awal
 apt-get update
 apt-get install dnsutils
-
+<br>
 //Kembalikan nameserver agar tersambung dengan MALANG
-host -t PTR "IP MALANG"
+host -t PTR "IP MALANG"</br>
 `
 </br>
 <img src="https://user-images.githubusercontent.com/61219556/99040196-49129a00-25bb-11eb-955d-b0e5a9590e85.PNG" width="500" height="auto">
