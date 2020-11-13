@@ -93,7 +93,6 @@ zone "semerub05.pw" {
 `apt-get update
 apt-get install dnsutils
 <br>
-
 host -t PTR "IP MALANG"</br>
 `
 </br>
