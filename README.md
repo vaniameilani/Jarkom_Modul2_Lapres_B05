@@ -32,14 +32,24 @@
 <img src="https://user-images.githubusercontent.com/61219556/98794126-42f5af80-243b-11eb-8f91-8aa742186803.PNG" width="500" height="auto">
 
 #### 1. Membuat Domain alamat http://semeruyyy.pw
-a) Buka UML MALANG dan update package list dengan command `apt-get update`.
-b) Install aplikasi bind9 pada UML MALANG dengan `apt-get install bind9 -y`.
-c) Buka file dengan perintah `nano /etc/bind/named.conf.local`, lalu isi configurasi domain dengan syntax sebagai berikut :
+- Buka UML MALANG dan update package list dengan command `apt-get update`.
+- Install aplikasi bind9 pada UML MALANG dengan `apt-get install bind9 -y`.
+- Buka file dengan perintah `nano /etc/bind/named.conf.local`, lalu isi configurasi domain dengan syntax sebagai berikut :
 `zone "semerub05.pw" {
 	type master;
 	file "/etc/bind/jarkom/semerub05.pw";
 };`
+
 <img src="https://user-images.githubusercontent.com/61219556/99037041-7e1bee00-25b5-11eb-8ff5-cbf05829be6c.PNG" width="500" height="auto">
+
+- Buat folder jarkom di dalam /etc/bind dengan perintah `mkdir /etc/bind/jarkom`.
+- Copy file **db.local** ke dalam folder **jarkom** dan ubah namanya menjadi **semerub05.pw**.
+`cp /etc/bind/db.local /etc/bind/jarkom/semerub05.pw`.
+- Buka file **semerub05.pw** dengan perintah `nano /etc/bind/jarkom/semerub05.pw`. Lalu, edit file dengan memasukkan IP MALANG seperti berikut	:
+
+<img src="https://user-images.githubusercontent.com/61219556/99037445-46fa0c80-25b6-11eb-8899-2341bb7d5b70.PNG" width="500" height="auto">
+
+- Restart bind9 untuk meng-update perubahan dengan perintah `service bind9 restart`.
 
 #### 2. Membuat alias dari http://www.semeruyyy.pw
 #### 3. Membuat subdomain http://penanjakan.semeruyyy.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO 
