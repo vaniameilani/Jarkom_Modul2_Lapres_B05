@@ -32,22 +32,24 @@
 <img src="https://user-images.githubusercontent.com/61219556/98794126-42f5af80-243b-11eb-8f91-8aa742186803.PNG" width="500" height="auto">
 
 ### 1. Membuat Domain alamat http://semeruyyy.pw
-- Buka UML MALANG dan update package list dengan command 
-  `apt-get update`.
-- Install aplikasi bind9 pada UML MALANG dengan
-   `apt-get install bind9 -y`.
+- Buka UML MALANG dan update package list dengan command <br>
+  `apt-get update`. </br>
+- Install aplikasi bind9 pada UML MALANG dengan <br>
+   `apt-get install bind9 -y`. </br>
 - Buka file dengan perintah `nano /etc/bind/named.conf.local`, lalu isi configurasi domain dengan syntax sebagai berikut : <br>
-`zone "semerub05.pw" {
+`
+zone "semerub05.pw" {
 	type master;
 	file "/etc/bind/jarkom/semerub05.pw";
-};`
+};
+`
 </br>
 <img src="https://user-images.githubusercontent.com/61219556/99037041-7e1bee00-25b5-11eb-8ff5-cbf05829be6c.PNG" width="500" height="auto">
 
-- Buat folder jarkom di dalam /etc/bind dengan perintah 
-  `mkdir /etc/bind/jarkom`.
-- Copy file **db.local** ke dalam folder **jarkom** dan ubah namanya menjadi **semerub05.pw**.
-  `cp /etc/bind/db.local /etc/bind/jarkom/semerub05.pw`.
+- Buat folder jarkom di dalam /etc/bind dengan perintah <br>
+  `mkdir /etc/bind/jarkom`. </br>
+- Copy file **db.local** ke dalam folder **jarkom** dan ubah namanya menjadi **semerub05.pw**. <br>
+  `cp /etc/bind/db.local /etc/bind/jarkom/semerub05.pw`. </br>
 - Buka file **semerub05.pw** dengan perintah `nano /etc/bind/jarkom/semerub05.pw`. Lalu, edit file dengan memasukkan IP MALANG seperti berikut	:
 
 <img src="https://user-images.githubusercontent.com/61219556/99037445-46fa0c80-25b6-11eb-8899-2341bb7d5b70.PNG" width="500" height="auto">
@@ -59,8 +61,8 @@
 
 <img src="https://user-images.githubusercontent.com/61219556/99037822-123a8500-25b7-11eb-8ddb-1dcc9f3b4f49.PNG" width="500" height="auto">
 
-- Restart bind9 dengan perintah 
-  `service bind9 restart`.
+- Restart bind9 dengan perintah <br>
+  `service bind9 restart`. </br>
 - Lalu, buka UML client yaitu GRESIK atau SIDOARJO untuk melakukan `ping semerub05.pw` dan hasil harus mengarah ke host dengan IP MALANG.
 
 <img src="https://user-images.githubusercontent.com/61219556/99038420-0d2a0580-25b8-11eb-8743-eed75a6288ee.PNG" width="500" height="auto">
@@ -73,12 +75,12 @@
 - Lalu `ping penanjakan.semerub05.pw` pada UML client GRESIK.
 
 ### 4. Reverse domain untuk domain utama
-- Buka UML MALANG, edit file pada `nano /etc/bind/named.conf.local` dengan menambahkan configurasi seperti berikut	:
+- Buka UML MALANG, edit file pada `nano /etc/bind/named.conf.local` dengan menambahkan configurasi seperti berikut : <br>
 `zone "83.151.10.in-addr.arpa" {
     type master;
     file "/etc/bind/jarkom/83.151.10.in-addr.arpa";
 };`
-
+</br>
 <img src="https://user-images.githubusercontent.com/61219556/99039786-8d516a80-25ba-11eb-97f0-5941d25929df.PNG" width="500" height="auto">
 
 - Copy file **db.local** ke dalam folder **jarkom** dan ubah nama menjadi **83.151.10.in-addr.arpa**.
@@ -87,15 +89,17 @@
 <img src="https://user-images.githubusercontent.com/61219556/99039942-d86b7d80-25ba-11eb-9131-9d231fb1033a.PNG" width="500" height="auto">
 
 - Restart bind9 untuk menyimpan perubahan yang ada.
-- Untuk mengecek apakah konfigurasi sudah benar atau belum, lakukan perintah berikut pada UML client GRESIK atau SIDOARJO
-`// Install package dnsutils
+- Untuk mengecek apakah konfigurasi sudah benar atau belum, lakukan perintah berikut pada UML client GRESIK atau SIDOARJO . <br>
+`
+// Install package dnsutils
 // Pastikan nameserver telah dikembalikan ke settingan awal
 apt-get update
 apt-get install dnsutils
 
 //Kembalikan nameserver agar tersambung dengan MALANG
-host -t PTR "IP MALANG"`
-
+host -t PTR "IP MALANG"
+`
+</br>
 <img src="https://user-images.githubusercontent.com/61219556/99040196-49129a00-25bb-11eb-955d-b0e5a9590e85.PNG" width="500" height="auto">
 
 <img src="https://user-images.githubusercontent.com/61219556/99040201-4a43c700-25bb-11eb-9c78-7efdd3af56f0.PNG" width="500" height="auto">
