@@ -7,8 +7,8 @@
 1. Disarankan untuk mengganti password user kelompok.
 2. [SARAN] Selalu mem-backup konfigurasi pada setiap UML untuk mengantisipasi kejadian yang tidak
   diinginkan. Back up disimpan di luar UML.
-3. yyy = b05
-4. IP Server Probolinggo : NID_DMZ_tiap_kelompok + 4 = 10.151.83.52
+3. yyy = `b05`
+4. IP Server Probolinggo : NID_DMZ_tiap_kelompok + 4 = `10.151.83.52`
 5. Jika tidak bisa menginstall php5 maka gunakan php7.0.
 6. File pendukung: 
   - File/folder pendukung untuk web http://semeruyyy.pw bisa di download dengan cara:
@@ -28,9 +28,19 @@
 - Router SURABAYA
 
 **Tahap awal sebelum membuat DNS sesuai dengan modul Pengenalan UML, hanya saja ditambahkan server PROBOLINGGO pada topologi**
+
 <img src="https://user-images.githubusercontent.com/61219556/98794126-42f5af80-243b-11eb-8f91-8aa742186803.PNG" width="500" height="auto">
 
 #### 1. Membuat Domain alamat http://semeruyyy.pw
+a) Buka UML MALANG dan update package list dengan command `apt-get update`.
+b) Install aplikasi bind9 pada UML MALANG dengan `apt-get install bind9 -y`.
+c) Buka file dengan perintah `nano /etc/bind/named.conf.local`, lalu isi configurasi domain dengan syntax sebagai berikut :
+`zone "semerub05.pw" {
+	type master;
+	file "/etc/bind/jarkom/semerub05.pw";
+};`
+<img src="https://user-images.githubusercontent.com/61219556/99037041-7e1bee00-25b5-11eb-8ff5-cbf05829be6c.PNG" width="500" height="auto">
+
 #### 2. Membuat alias dari http://www.semeruyyy.pw
 #### 3. Membuat subdomain http://penanjakan.semeruyyy.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO 
 #### 4. Reverse domain untuk domain utama
