@@ -72,7 +72,7 @@
 - Restart service bind9
 - Lalu `ping penanjakan.semerub05.pw` pada UML client GRESIK.
 
-#### 4. Reverse domain untuk domain utama
+### 4. Reverse domain untuk domain utama
 - Buka UML MALANG, edit file pada `nano /etc/bind/named.conf.local` dengan menambahkan configurasi seperti berikut	:
 `zone "83.151.10.in-addr.arpa" {
     type master;
@@ -100,7 +100,7 @@ host -t PTR "IP MALANG"`
 
 <img src="https://user-images.githubusercontent.com/61219556/99040201-4a43c700-25bb-11eb-9c78-7efdd3af56f0.PNG" width="500" height="auto">
 
-#### 5. Membuat DNS Server Slave pada MOJOKERTO
+### 5. Membuat DNS Server Slave pada MOJOKERTO
 #### 6. Membuat Subdomain dengan alamat http://gunung.semeruyyy.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO
 #### 7. Membuat subdomain dengan nama http://naik.gunung.semeruyyy.pw, domain ini diarahkan ke IP Server PROBOLINGGO
 #### 8. Membuat domain http://semeruyyy.pw memiliki DocumentRoot pada /var/www/semeruyyy.pw 
