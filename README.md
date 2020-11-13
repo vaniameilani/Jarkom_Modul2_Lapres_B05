@@ -36,12 +36,12 @@
   `apt-get update`.
 - Install aplikasi bind9 pada UML MALANG dengan
    `apt-get install bind9 -y`.
-- Buka file dengan perintah `nano /etc/bind/named.conf.local`, lalu isi configurasi domain dengan syntax sebagai berikut :
+- Buka file dengan perintah `nano /etc/bind/named.conf.local`, lalu isi configurasi domain dengan syntax sebagai berikut : <br>
 `zone "semerub05.pw" {
 	type master;
 	file "/etc/bind/jarkom/semerub05.pw";
 };`
-
+</br>
 <img src="https://user-images.githubusercontent.com/61219556/99037041-7e1bee00-25b5-11eb-8ff5-cbf05829be6c.PNG" width="500" height="auto">
 
 - Buat folder jarkom di dalam /etc/bind dengan perintah 
