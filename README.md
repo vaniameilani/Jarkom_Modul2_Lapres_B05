@@ -37,12 +37,12 @@
 - Install aplikasi bind9 pada UML MALANG dengan <br>
    `apt-get install bind9 -y`. </br>
 - Buka file dengan perintah `nano /etc/bind/named.conf.local`, lalu isi configurasi domain dengan syntax sebagai berikut : <br>
-`
+```
 zone "semerub05.pw" {
 	type master;
 	file "/etc/bind/jarkom/semerub05.pw";
 };
-`
+```
 </br>
 <img src="https://user-images.githubusercontent.com/61219556/99037041-7e1bee00-25b5-11eb-8ff5-cbf05829be6c.PNG" width="500" height="auto">
 
@@ -50,11 +50,12 @@ zone "semerub05.pw" {
   `mkdir /etc/bind/jarkom`. </br>
 - Copy file **db.local** ke dalam folder **jarkom** dan ubah namanya menjadi **semerub05.pw**. <br>
   `cp /etc/bind/db.local /etc/bind/jarkom/semerub05.pw`. </br>
-- Buka file **semerub05.pw** dengan perintah `nano /etc/bind/jarkom/semerub05.pw`. Lalu, edit file dengan memasukkan IP MALANG seperti berikut	:
+- Buka file **semerub05.pw** dengan perintah `nano /etc/bind/jarkom/semerub05.pw`. Lalu, edit file dengan memasukkan IP PROBOLINGGO seperti berikut	:
 
 <img src="https://user-images.githubusercontent.com/61219556/99037445-46fa0c80-25b6-11eb-8899-2341bb7d5b70.PNG" width="500" height="auto">
 
 - Restart bind9 untuk meng-update perubahan dengan perintah `service bind9 restart`.
+- Untuk cek koneksi DNS, lakukan `ping semerub05.pw` pada UML client GRESIK dan SIDOARJO.
 
 ### 2. Membuat alias dari http://www.semeruyyy.pw
 - Pada UML MALANG, buka file **semerub05.pw** dan tambahkan configurasi berupa **record CNAME** seperti berikut	:
@@ -63,28 +64,31 @@ zone "semerub05.pw" {
 
 - Restart bind9 dengan perintah <br>
   `service bind9 restart`. </br>
-- Lalu, buka UML client yaitu GRESIK atau SIDOARJO untuk melakukan `ping semerub05.pw` dan hasil harus mengarah ke host dengan IP MALANG.
+- Lalu, buka UML client yaitu GRESIK atau SIDOARJO untuk melakukan `ping semerub05.pw` dan hasil harus mengarah ke host dengan IP PROBOLINGGO.
 
 <img src="https://user-images.githubusercontent.com/61219556/99038420-0d2a0580-25b8-11eb-8743-eed75a6288ee.PNG" width="500" height="auto">
 
 <img src="https://user-images.githubusercontent.com/61219556/99038422-0e5b3280-25b8-11eb-9e2f-82ef0f051182.PNG" width="500" height="auto">
 
 ### 3. Membuat subdomain http://penanjakan.semeruyyy.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO 
-- Buka UML MALANG, buka file **semerub05.pw** dan edit dengan menambahkan subdomain untuk **semerub05.pw** yang mengarah pada IP PROBOLINGGO
+- Buka UML MALANG, buka file **semerub05.pw** dan edit dengan menambahkan subdomain untuk **semerub05.pw** yang mengarah pada IP PROBOLINGGO <br>
+`nano /etc/bind/jarkom/semerub05.pw`</br>
 - Restart service bind9
 - Lalu `ping penanjakan.semerub05.pw` pada UML client GRESIK.
 
 ### 4. Reverse domain untuk domain utama
 - Buka UML MALANG, edit file pada `nano /etc/bind/named.conf.local` dengan menambahkan configurasi seperti berikut : <br>
-`zone "83.151.10.in-addr.arpa" {
+```
+zone "83.151.10.in-addr.arpa" {
     type master;
     file "/etc/bind/jarkom/83.151.10.in-addr.arpa";
-};`
+};
+```
 </br>
 <img src="https://user-images.githubusercontent.com/61219556/99039786-8d516a80-25ba-11eb-97f0-5941d25929df.PNG" width="500" height="auto">
 
 - Copy file **db.local** ke dalam folder **jarkom** dan ubah nama menjadi **83.151.10.in-addr.arpa**.
-- Edit file tersebut hingga menjadi seperti gambar berikut	:
+- Edit file dengan mengganti IP PROBOLINGGO seperti gambar berikut	:
 
 <img src="https://user-images.githubusercontent.com/61219556/99039942-d86b7d80-25ba-11eb-9131-9d231fb1033a.PNG" width="500" height="auto">
 
@@ -92,16 +96,83 @@ zone "semerub05.pw" {
 - Untuk mengecek apakah konfigurasi sudah benar atau belum, lakukan perintah berikut pada UML client GRESIK atau SIDOARJO . <br>
 `apt-get update`</br><br>
 `apt-get install dnsutils`</br><br>
-`host -t PTR 10.151.83.50`</br>
+`host -t PTR 10.151.83.52`</br>
 </br>
 <img src="https://user-images.githubusercontent.com/61219556/99040196-49129a00-25bb-11eb-955d-b0e5a9590e85.PNG" width="500" height="auto">
 
 <img src="https://user-images.githubusercontent.com/61219556/99040201-4a43c700-25bb-11eb-9c78-7efdd3af56f0.PNG" width="500" height="auto">
 
 ### 5. Membuat DNS Server Slave pada MOJOKERTO
-#### 6. Membuat Subdomain dengan alamat http://gunung.semeruyyy.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO
-#### 7. Membuat subdomain dengan nama http://naik.gunung.semeruyyy.pw, domain ini diarahkan ke IP Server PROBOLINGGO
-#### 8. Membuat domain http://semeruyyy.pw memiliki DocumentRoot pada /var/www/semeruyyy.pw 
+- Buka UML MALANG, edit file `etc/bind/named.conf.local` seperti dibawah ini :
+```
+zone "semerub05.pw" {
+    type master;
+    notify yes;
+    also-notify { 10.151.83.51; }; // IP MOJOKERTO
+    allow-transfer { 10.151.83.51; }; 
+    file "/etc/bind/jarkom/jarkom2020.com";
+};
+```
+<img src="https://user-images.githubusercontent.com/61219556/99141888-29927480-2682-11eb-94ac-68b6ae988e6b.PNG" width="500" height="auto">
+
+- Restart bind9 untuk menyimpan perubahan yang ada.
+- Buka UML MOJOKERTO, edit file `etc/bind/named.conf.local` seperti dibawah ini :
+<br>
+```
+zone "semerub05.pw" {
+    type slave;
+    masters { 10.151.83.50; }; // IP MALANG
+    file "/var/lib/bind/semerub05.pw";
+};
+```
+</br>
+
+<img src="https://user-images.githubusercontent.com/61219556/99141963-f0a6cf80-2682-11eb-8f85-b39173469820.PNG" width="500" height="auto">
+
+- Restart bind9 untuk menyimpan perubahan yang ada.
+- Buka UML MALANG, matikan server bind9 (untuk melakukan testing) dengan perintah <br>
+`service bind9 stop` </br>
+- Lakukan `ping semerub05.pw`.
+
+### 6. Membuat Subdomain dengan alamat http://gunung.semeruyyy.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO & 
+### 7. Membuat subdomain dengan nama http://naik.gunung.semeruyyy.pw, domain ini diarahkan ke IP Server PROBOLINGGO
+- Buka UML MALANG, edit file `etc/bind/jarkom/semerub05.pw` seperti berikut :
+
+<img src="https://user-images.githubusercontent.com/61219556/99142139-dd94ff00-2684-11eb-813e-9e90f10aee50.PNG" width="500" height="auto">
+
+- Lalu, edit `file/etc/bind/named.conf.options` pada UML MALANG 
+`nano /etc/bind/named.conf.options`
+- Kemudian comment **dnssec-validation auto;** dan tambahkan baris berikut pada `/etc/bind/named.conf.options`<br>
+`allow-query{any;};`
+
+<img src="https://user-images.githubusercontent.com/61219556/99142447-9a885b00-2687-11eb-9a83-806bb4ffa566.PNG" width="500" height="auto">
+
+- Kemudian, edit file `etc/bind/named.conf.local`
+
+<img src="https://user-images.githubusercontent.com/61219556/99142503-07035a00-2688-11eb-9337-9d269bda21af.PNG" width="500" height="auto">
+
+- Restart bind9 
+- Buka UML MOJOKERTO, lalu buka dan edit file pada `/etc/bind/named.conf.options` dengan menambahkan `allow-query{any;};`.
+- Lalu, edit file `/etc/bind/named.conf.local` menjadi seperti dibawah ini :
+
+<img src="https://user-images.githubusercontent.com/61219556/99142602-22bb3000-2689-11eb-8f9d-1c9c971e570b.PNG" width="500" height="auto">
+
+- Kemudian buat direktori dengan nama **delegasi**
+- Copy **db.local** ke direktori **delegasi** dan edit namanya menjadi `gunung.semerub05.pw`
+```
+mkdir /etc/bind/delegasi
+cp /etc/bind/db.local /etc/bind/delegasi/gunung.semerub05.pw
+```
+- Kemudian, edit file `gunung.semerub05.pw` hingga menjadi seperti di bawah ini :
+
+<img src="https://user-images.githubusercontent.com/61219556/99142873-b261de00-268b-11eb-9e52-730be8938972.PNG" width="500" height="auto">
+
+- Restart bind9
+- Lakukan testing pada UML Client GRESIK dengan `ping gunung.semerub05.pw` dan `ping naik.gunung.semerub05.pw`
+
+<img src="https://user-images.githubusercontent.com/61219556/99142919-0c62a380-268c-11eb-881d-5cbc9ac2e84e.PNG" width="500" height="auto">
+
+### 8. Membuat domain http://semeruyyy.pw memiliki DocumentRoot pada /var/www/semeruyyy.pw 
 #### 9. Diaktifkan mod rewrite agar urlnya menjadi http://semeruyyy.pw/home.
 #### 10. Web http://penanjakan.semeruyyy.pw akan digunakan untuk menyimpan assets file yang memiliki DocumentRoot pada /var/www/penanjakan.semeruyyy.pw dan memiliki struktur folder sebagai berikut:
 /var/www/penanjakan.semeruyyy.pw
