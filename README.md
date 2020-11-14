@@ -30,13 +30,13 @@
 - [Nomor 7](#Nomor-7)
 - [Nomor 8](#Nomor-8)
 - [Nomor 9](#Nomor-9)
-<br>
-- Server MALANG       = DNS Server Master
-- Server MOJOKERTO    = DNS Server Slave
-- Server PROBOLINGGO  = Web Server
-- Klien GRESIK & Klien SIDOARJO
-- Router SURABAYA
-</br>
+
+1. Server MALANG       = DNS Server Master
+2. Server MOJOKERTO    = DNS Server Slave
+3. Server PROBOLINGGO  = Web Server
+4. Klien GRESIK & Klien SIDOARJO
+5. Router SURABAYA
+
 **Tahap awal sebelum membuat DNS sesuai dengan modul Pengenalan UML, hanya saja ditambahkan server PROBOLINGGO pada topologi**
 
 <img src="https://user-images.githubusercontent.com/61219556/98794126-42f5af80-243b-11eb-8f91-8aa742186803.PNG" width="500" height="auto">
