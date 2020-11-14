@@ -22,6 +22,14 @@
 <img src="https://user-images.githubusercontent.com/61219556/98789471-ea231880-2434-11eb-8375-b9219c917a68.PNG" width="500" height="auto">
 
 - [Nomor 1](#Nomor-1)
+- [Nomor 2](#Nomor-2)
+- [Nomor 3](#Nomor-3)
+- [Nomor 4](#Nomor-4)
+- [Nomor 5](#Nomor-5)
+- [Nomor 6](#Nomor-6)
+- [Nomor 7](#Nomor-7)
+- [Nomor 8](#Nomor-8)
+- [Nomor 9](#Nomor-9)
 
 - Server MALANG       = DNS Server Master
 - Server MOJOKERTO    = DNS Server Slave
@@ -33,7 +41,6 @@
 
 <img src="https://user-images.githubusercontent.com/61219556/98794126-42f5af80-243b-11eb-8f91-8aa742186803.PNG" width="500" height="auto">
 
-#Nomor-1
 ### 1. Membuat Domain alamat http://semeruyyy.pw
 - Buka UML MALANG dan update package list dengan command <br>
   `apt-get update`. </br>
