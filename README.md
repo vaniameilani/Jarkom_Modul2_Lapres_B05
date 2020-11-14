@@ -173,7 +173,50 @@ cp /etc/bind/db.local /etc/bind/delegasi/gunung.semerub05.pw
 <img src="https://user-images.githubusercontent.com/61219556/99142919-0c62a380-268c-11eb-881d-5cbc9ac2e84e.PNG" width="500" height="auto">
 
 ### 8. Membuat domain http://semeruyyy.pw memiliki DocumentRoot pada /var/www/semeruyyy.pw 
-#### 9. Diaktifkan mod rewrite agar urlnya menjadi http://semeruyyy.pw/home.
+- Buka UML PROBOLINGGO, pindah ke dircetory `/etc/apache2/sites-available`.
+- Copy file **default** menjadi file **semerub05.pw**.
+- Buka file **semerub05.pw** , lalu tambahkan 
+```
+ServerName semerub05.pw
+ServerAlias semerub05.pw
+```
+- Ubah DocumentRoot menjadi /var/www/semerub05.pw
+
+<img src="https://user-images.githubusercontent.com/61219556/99143152-d9b9aa80-268d-11eb-9a0f-1ca85d13ace5.PNG" width="500" height="auto">
+
+- Gunakan perintah `a2ensite semerub05.pw`
+- Gunakan perintah `service apache2 restart`
+
+<img src="https://user-images.githubusercontent.com/61219556/99143193-184f6500-268e-11eb-87a1-053c4fa9771d.PNG" width="500" height="auto">
+
+- Pindah ke directory `/var/www`
+- Download folder dengan perintah `wget 10.151.36.202/semeru.pw.zip`
+- Unzip folder dengan perintah `unzip [nama file]` dan ubah namanya menjadi **semerub05.pw**
+- Buka browser dan akses http://semerub05.pw
+
+<img src="https://user-images.githubusercontent.com/61219556/99143249-957ada00-268e-11eb-8e1f-b999262eec3c.PNG" width="500" height="auto">
+
+### 9. Diaktifkan mod rewrite agar urlnya menjadi http://semeruyyy.pw/home.
+- Jalankan perintah `a2enmod rewrite` untuk mengaktifkan `module rewrite`.
+- Restart apache dengan perintah `service apache2 restart`
+- Pindah ke directory `/var/www/jarkom2020.com` dan buat file **.htaccess** dengan isi file :
+```
+ RewriteEngine On
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteRule ^([^\.]+)$ $1.php [NC,L]
+ ```
+ - Pindah ke directory `/etc/apache2/sites-available` kemudian buka file **semerub05.pw** dan tambahkan :
+```
+<Directory /var/www/semerub05.pw>
+     Options +FollowSymLinks -Multiviews
+     AllowOverride All
+ </Directory>
+ ```
+ - Restart apache dengan perintah `service apache2 restart`
+ - Buka browser dan akses http://semerub05.pw/home
+ 
+ <img src="https://user-images.githubusercontent.com/61219556/99143353-3b2e4900-268f-11eb-87c1-ef5fd878155e.PNG" width="500" height="auto">
+ 
 #### 10. Web http://penanjakan.semeruyyy.pw akan digunakan untuk menyimpan assets file yang memiliki DocumentRoot pada /var/www/penanjakan.semeruyyy.pw dan memiliki struktur folder sebagai berikut:
 /var/www/penanjakan.semeruyyy.pw
                     /public/javascripts
