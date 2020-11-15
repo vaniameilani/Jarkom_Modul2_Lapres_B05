@@ -143,10 +143,12 @@ zone "semerub05.pw" {
 ### 7. Membuat subdomain dengan nama http://naik.gunung.semeruyyy.pw, domain ini diarahkan ke IP Server PROBOLINGGO
 - Buka UML MALANG, edit file `etc/bind/jarkom/semerub05.pw` seperti berikut :
 
-<img src="https://user-images.githubusercontent.com/61219556/99142139-dd94ff00-2684-11eb-813e-9e90f10aee50.PNG" width="500" height="auto">
+<img src="https://user-images.githubusercontent.com/61219556/99185052-d7347f00-2779-11eb-899b-22dd7d3a842f.PNG" width="500" height="auto">
 
 - Lalu, edit `file/etc/bind/named.conf.options` pada UML MALANG 
-`nano /etc/bind/named.conf.options`
+```
+nano /etc/bind/named.conf.options
+```
 - Kemudian comment **dnssec-validation auto;** dan tambahkan baris berikut pada `/etc/bind/named.conf.options`<br>
 `allow-query{any;};`
 
@@ -175,7 +177,7 @@ cp /etc/bind/db.local /etc/bind/delegasi/gunung.semerub05.pw
 - Restart bind9
 - Lakukan testing pada UML Client GRESIK dengan `ping gunung.semerub05.pw` dan `ping naik.gunung.semerub05.pw`
 
-<img src="https://user-images.githubusercontent.com/61219556/99142919-0c62a380-268c-11eb-881d-5cbc9ac2e84e.PNG" width="500" height="auto">
+<img src="https://user-images.githubusercontent.com/61219556/99185053-d865ac00-2779-11eb-8567-f2e3b39a4692.PNG" width="500" height="auto">
 
 ### 8. Membuat domain http://semeruyyy.pw memiliki DocumentRoot pada /var/www/semeruyyy.pw 
 - Buka UML PROBOLINGGO, pindah ke dircetory `/etc/apache2/sites-available`.
@@ -222,7 +224,7 @@ ServerAlias semerub05.pw
  
  <img src="https://user-images.githubusercontent.com/61219556/99143353-3b2e4900-268f-11eb-87c1-ef5fd878155e.PNG" width="500" height="auto">
  
-#### 10. Web http://penanjakan.semeruyyy.pw akan digunakan untuk menyimpan assets file yang memiliki DocumentRoot pada /var/www/penanjakan.semeruyyy.pw dan memiliki struktur folder sebagai berikut:
+### 10. Web http://penanjakan.semeruyyy.pw akan digunakan untuk menyimpan assets file yang memiliki DocumentRoot pada /var/www/penanjakan.semeruyyy.pw dan memiliki struktur folder sebagai berikut:
 ```
 /var/www/penanjakan.semeruyyy.pw
                     /public/javascripts
@@ -248,7 +250,7 @@ ServerAlias penanjakan.semerub05.pw
 
 <img src="https://user-images.githubusercontent.com/61219556/99184070-14494300-2773-11eb-9832-3083877e95c7.PNG" width="500" height="auto">
 
-#### 11. Pada folder /public dibolehkan directory listing namun untuk folder yang berada di dalamnya tidak dibolehkan. 
+### 11. Pada folder /public dibolehkan directory listing namun untuk folder yang berada di dalamnya tidak dibolehkan. 
 - Pada UML PROBOLINGGO, pindah kembali ke directory `/etc/apache2/sites-available`.
 - Buka file **penanjakan.semerub05.pw** dan tambahkan :
 ```
@@ -271,14 +273,98 @@ ServerAlias penanjakan.semerub05.pw
 - Restart apache seperti perintah diatas. Maka, akan muncul hasil :
 
 <img src="https://user-images.githubusercontent.com/61219556/99184150-a0f40100-2773-11eb-976a-d1367d337b64.PNG" width="500" height="auto">
+
+- Hasil css :
 <img src="https://user-images.githubusercontent.com/61219556/99184195-cda81880-2773-11eb-8915-81b67160c36d.PNG" width="500" height="auto">
+
+- Hasil Javascripts :
 <img src="https://user-images.githubusercontent.com/61219556/99184208-e1ec1580-2773-11eb-9253-0c8a78063e78.PNG" width="500" height="auto">
+
+- Hasil Images :
 <img src="https://user-images.githubusercontent.com/61219556/99184234-f3cdb880-2773-11eb-924b-736bbb153d28.PNG" width="500" height="auto">
 
-#### 12. Disediakan file 404.html pada folder /errors untuk mengganti error default 404 dari Apache.
-- 
-#### 13. Dibuatkan konfigurasi virtual host agar ketika mengakses file assets menjadi http://penanjakan.semeruyyy.pw/js. Untuk web http://gunung.semeruyyy.pw belum dapat dikonfigurasi pada web server karena menunggu pengerjaan website selesai. 
-#### 14. Web http://naik.gunung.semeruyyy.pw sudah bisa diakses hanya dengan menggunakan port 8888. DocumentRoot web berada pada /var/www/naik.gunung.semeruyyy.pw. 
-#### 15. Membuat web http://naik.gunung.semeruyyy.pw agar diberi autentikasi password dengan username “semeru” dan password “kuynaikgunung” 
-#### 16. Setiap mengunjungi IP PROBOLINGGO akan dialihkan secara otomatis ke http://semeruyyy.pw. 
+### 12. Disediakan file 404.html pada folder /errors untuk mengganti error default 404 dari Apache.
+- Pada UML PROBOLINGGO di direktori yang sama `/etc/apache2/sites-available`, buka file **penanjakan.semerub05.pw** dan tambahkan :
+```
+ErrorDocument 404 /errors/404.html
+```
+<img src="https://user-images.githubusercontent.com/61219556/99184398-0dbbcb00-2775-11eb-8b62-75b2615cbc85.PNG" width="500" height="auto">
+
+- Restart apache seperti perintah diatas. Maka, akan muncul hasil :
+
+<img src="https://user-images.githubusercontent.com/61219556/99184424-3ba10f80-2775-11eb-9044-429b2edbc286.PNG" width="500" height="auto">
+
+### 13. Dibuatkan konfigurasi virtual host agar ketika mengakses file assets menjadi http://penanjakan.semeruyyy.pw/js. Untuk web http://gunung.semeruyyy.pw belum dapat dikonfigurasi pada web server karena menunggu pengerjaan website selesai. 
+- Masih pada direktori dan file yang sama, edit file dengan menambahkan :
+```
+Alias /js /var/www/penanjakan.semerub05.pw/public/javascripts
+```
+
+<img src="https://user-images.githubusercontent.com/61219556/99184462-8fabf400-2775-11eb-9964-40b0d4cc1158.PNG" width="500" height="auto">
+
+- Restart apache seperti perintah diatas. Maka, akan muncul hasil :
+
+<img src="https://user-images.githubusercontent.com/61219556/99184475-b538fd80-2775-11eb-9b5d-2c7a8b1ac347.PNG" width="500" height="auto">
+
+### 14. Web http://naik.gunung.semeruyyy.pw sudah bisa diakses hanya dengan menggunakan port 8888. DocumentRoot web berada pada /var/www/naik.gunung.semeruyyy.pw. 
+- Masih pada direktori yang sama, copy file **default** menjadi file **naik.gunung.semerub05.pw**.
+- Edit file dengan menambahkan directory `listing` agar website dapat dilihat hingga menjadi seperti ini : 
+
+<img src="https://user-images.githubusercontent.com/61219556/99184527-0e089600-2776-11eb-8135-6b2298878865.PNG" width="500" height="auto">
+
+- Restart apache untuk menyimpan perubahan yang ada 
+- Pindah ke directory `/etc/apache2` , lalu buka file **ports.conf**.
+- Edit file dengan menambahkan **port 8888** 
+
+<img src="https://user-images.githubusercontent.com/61219556/99184519-05b05b00-2776-11eb-88c2-0c289abdf0d5.PNG" width="500" height="auto">
+
+- Gunakan perintah `a2ensite naik.gunung.semerub05.pw`
+- Simpan perubahan dengan restart apache
+- Pindah ke directory `/var/www`
+- Download file yang dibutuhkan dengan perintah `Gunakan perintah wget 10.151.36.202/naik.gunung.semeru.pw.zip`
+- Unzip file dan pindah / ubah ke folder **naik.gunung.semerub05.pw** . Dan akan muncul hasil seperti berikut :
+
+<img src="https://user-images.githubusercontent.com/61219556/99184528-0ea12c80-2776-11eb-8121-943490b1ac58.PNG" width="500" height="auto">
+
+### 15. Membuat web http://naik.gunung.semeruyyy.pw agar diberi autentikasi password dengan username “semeru” dan password “kuynaikgunung”.
+- Install apache utilities package
+```
+apt-get update
+apt-get install apache2 apache2-utils
+```
+- Buat file password, masukan username dan password dengan perintah 
+```
+htpasswd -c /etc/apache2/.htpasswd semeru
+```
+<img src="https://user-images.githubusercontent.com/61219556/99184807-37c2bc80-2778-11eb-94f7-a05ec2db0d6c.PNG" width="500" height="auto">
+
+- Pindah ke directory `/etc/apache2/sites-enabled`, lalu buka file **naik.gunung.semerub05.pw** seperti gambar berikut :
+
+<img src="https://user-images.githubusercontent.com/61219556/99184811-3e513400-2778-11eb-86ed-68c72de3024f.PNG" width="500" height="auto">
+
+- Simpan perubahan dengan restart apache 
+- Hasilnya akan seperti berikut :
+
+<img src="https://user-images.githubusercontent.com/61219556/99184812-3ee9ca80-2778-11eb-9cdd-558ac06a1e2e.PNG" width="500" height="auto">
+<img src="https://user-images.githubusercontent.com/61219556/99184813-401af780-2778-11eb-8a5b-8d2bd0bd7658.PNG" width="500" height="auto">
+
+#### 16. Setiap mengunjungi IP PROBOLINGGO akan dialihkan secara otomatis ke http://semeruyyy.pw.
+- Pindah ke directory `/var/www` dan buat file **.htaccess** dengan isi file seperti berikut :
+
+<img src="https://user-images.githubusercontent.com/61219556/99184891-f4b51900-2778-11eb-9456-f0ef9856b63b.PNG" width="500" height="auto">
+
+- Simpan perubahan dengan melakukan perintah `service apache2 restart`.
+- Buka brwoser lalu ketik IP PROBOLINGGO `10.151.83.52` 
+
+<img src="https://user-images.githubusercontent.com/61219556/99184892-f8e13680-2778-11eb-8e1f-9a65981dc57e.PNG" width="500" height="auto">
+
 #### 17. Semua request gambar yang memiliki substring “semeru” akan diarahkan menuju semeru.jpg.
+- Pindah ke directory `/var/www/penanjakan.semerub05.pw` dan buat file **.htaccess** dengan isi seperti berikut :
+
+<img src="https://user-images.githubusercontent.com/61219556/99184959-570e1980-2779-11eb-9e02-053ac438221c.PNG" width="500" height="auto">
+
+- Simpan perubahan dengan me-restart apache
+- Buka browser dan akses `penanjakan.semerua11.pw/public/images/tessemeru.jpg ` akan langsung mengarah pada `penanjakan.semerua11.pw/public/images/semeru.jpg`.
+
+<img src="https://user-images.githubusercontent.com/61219556/99184960-58d7dd00-2779-11eb-8e48-d23116fa3b4f.PNG" width="500" height="auto">
+
