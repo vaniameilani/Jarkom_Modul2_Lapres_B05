@@ -137,7 +137,7 @@ zone "semerub05.pw" {
 `service bind9 stop` </br>
 - Lakukan `ping semerub05.pw`.
 
-img src="https://user-images.githubusercontent.com/61219556/99183836-6f7a3600-2771-11eb-867e-5384acf64501.PNG" width="500" height="auto">
+<img src="https://user-images.githubusercontent.com/61219556/99183892-df88bc00-2771-11eb-862b-3c615023b98f.PNG" width="500" height="auto">
 
 ### 6. Membuat Subdomain dengan alamat http://gunung.semeruyyy.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO & 
 ### 7. Membuat subdomain dengan nama http://naik.gunung.semeruyyy.pw, domain ini diarahkan ke IP Server PROBOLINGGO
