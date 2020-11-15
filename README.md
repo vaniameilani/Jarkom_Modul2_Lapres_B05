@@ -133,15 +133,14 @@ zone "semerub05.pw" {
 
 - Restart bind9 untuk menyimpan perubahan yang ada.
 - Buka UML MOJOKERTO, edit file `etc/bind/named.conf.local` seperti dibawah ini :
-<br>
 ```
 zone "semerub05.pw" {
     type slave;
     masters { 10.151.83.50; }; // IP MALANG
     file "/var/lib/bind/semerub05.pw";
 };
+
 ```
-</br>
 
 <img src="https://user-images.githubusercontent.com/61219556/99141963-f0a6cf80-2682-11eb-8f85-b39173469820.PNG" width="500" height="auto">
 
