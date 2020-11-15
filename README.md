@@ -21,16 +21,6 @@
 ## Soal
 <img src="https://user-images.githubusercontent.com/61219556/98789471-ea231880-2434-11eb-8375-b9219c917a68.PNG" width="500" height="auto">
 
-- [Nomor 1](#Nomor-1)
-- [Nomor 2](#Nomor-2)
-- [Nomor 3](#Nomor-3)
-- [Nomor 4](#Nomor-4)
-- [Nomor 5](#Nomor-5)
-- [Nomor 6](#Nomor-6)
-- [Nomor 7](#Nomor-7)
-- [Nomor 8](#Nomor-8)
-- [Nomor 9](#Nomor-9)
-
 1. Server MALANG       = DNS Server Master
 2. Server MOJOKERTO    = DNS Server Slave
 3. Server PROBOLINGGO  = Web Server
@@ -62,29 +52,34 @@ zone "semerub05.pw" {
   `cp /etc/bind/db.local /etc/bind/jarkom/semerub05.pw`. </br>
 - Buka file **semerub05.pw** dengan perintah `nano /etc/bind/jarkom/semerub05.pw`. Lalu, edit file dengan memasukkan IP PROBOLINGGO seperti berikut	:
 
-<img src="https://user-images.githubusercontent.com/61219556/99037445-46fa0c80-25b6-11eb-8899-2341bb7d5b70.PNG" width="500" height="auto">
+<img src="https://user-images.githubusercontent.com/61219556/99183483-b286da00-276e-11eb-9b54-85192eda99a1.PNG" width="500" height="auto">
 
 - Restart bind9 untuk meng-update perubahan dengan perintah `service bind9 restart`.
 - Untuk cek koneksi DNS, lakukan `ping semerub05.pw` pada UML client GRESIK dan SIDOARJO.
 
+<img src="https://user-images.githubusercontent.com/61219556/99183494-cb8f8b00-276e-11eb-9cff-fe5fe3f4380d.PNG" width="500" height="auto">
+
 ### 2. Membuat alias dari http://www.semeruyyy.pw
 - Pada UML MALANG, buka file **semerub05.pw** dan tambahkan configurasi berupa **record CNAME** seperti berikut	:
 
-<img src="https://user-images.githubusercontent.com/61219556/99037822-123a8500-25b7-11eb-8ddb-1dcc9f3b4f49.PNG" width="500" height="auto">
+<img src="https://user-images.githubusercontent.com/61219556/99183510-ecf07700-276e-11eb-8010-4f43c2babedb.PNG" width="500" height="auto">
 
 - Restart bind9 dengan perintah <br>
   `service bind9 restart`. </br>
 - Lalu, buka UML client yaitu GRESIK atau SIDOARJO untuk melakukan `ping semerub05.pw` dan hasil harus mengarah ke host dengan IP PROBOLINGGO.
 
-<img src="https://user-images.githubusercontent.com/61219556/99038420-0d2a0580-25b8-11eb-8743-eed75a6288ee.PNG" width="500" height="auto">
-
-<img src="https://user-images.githubusercontent.com/61219556/99038422-0e5b3280-25b8-11eb-9e2f-82ef0f051182.PNG" width="500" height="auto">
+<img src="https://user-images.githubusercontent.com/61219556/99183530-18736180-276f-11eb-860a-578b858cd374.PNG" width="500" height="auto">
 
 ### 3. Membuat subdomain http://penanjakan.semeruyyy.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO 
 - Buka UML MALANG, buka file **semerub05.pw** dan edit dengan menambahkan subdomain untuk **semerub05.pw** yang mengarah pada IP PROBOLINGGO <br>
 `nano /etc/bind/jarkom/semerub05.pw`</br>
+
+<img src="https://user-images.githubusercontent.com/61219556/99183555-583a4900-276f-11eb-9f9c-3f9fd041de5b.PNG" width="500" height="auto">
+
 - Restart service bind9
 - Lalu `ping penanjakan.semerub05.pw` pada UML client GRESIK.
+
+<img src="https://user-images.githubusercontent.com/61219556/99183564-6d16dc80-276f-11eb-8f54-8b74164c7d15.PNG" width="500" height="auto">
 
 ### 4. Reverse domain untuk domain utama
 - Buka UML MALANG, edit file pada `nano /etc/bind/named.conf.local` dengan menambahkan configurasi seperti berikut : <br>
@@ -100,7 +95,7 @@ zone "83.151.10.in-addr.arpa" {
 - Copy file **db.local** ke dalam folder **jarkom** dan ubah nama menjadi **83.151.10.in-addr.arpa**.
 - Edit file dengan mengganti IP PROBOLINGGO seperti gambar berikut	:
 
-<img src="https://user-images.githubusercontent.com/61219556/99039942-d86b7d80-25ba-11eb-9131-9d231fb1033a.PNG" width="500" height="auto">
+<img src="https://user-images.githubusercontent.com/61219556/99183816-43f74b80-2771-11eb-9ccc-bc5a70a4dce1.PNG" width="500" height="auto">
 
 - Restart bind9 untuk menyimpan perubahan yang ada.
 - Untuk mengecek apakah konfigurasi sudah benar atau belum, lakukan perintah berikut pada UML client GRESIK atau SIDOARJO . <br>
@@ -108,9 +103,7 @@ zone "83.151.10.in-addr.arpa" {
 `apt-get install dnsutils`</br><br>
 `host -t PTR 10.151.83.52`</br>
 </br>
-<img src="https://user-images.githubusercontent.com/61219556/99040196-49129a00-25bb-11eb-955d-b0e5a9590e85.PNG" width="500" height="auto">
-
-<img src="https://user-images.githubusercontent.com/61219556/99040201-4a43c700-25bb-11eb-9c78-7efdd3af56f0.PNG" width="500" height="auto">
+<img src="https://user-images.githubusercontent.com/61219556/99183825-54a7c180-2771-11eb-8918-6d7a14f9f20f.PNG" width="500" height="auto">
 
 ### 5. Membuat DNS Server Slave pada MOJOKERTO
 - Buka UML MALANG, edit file `etc/bind/named.conf.local` seperti dibawah ini :
@@ -143,6 +136,8 @@ zone "semerub05.pw" {
 - Buka UML MALANG, matikan server bind9 (untuk melakukan testing) dengan perintah <br>
 `service bind9 stop` </br>
 - Lakukan `ping semerub05.pw`.
+
+img src="https://user-images.githubusercontent.com/61219556/99183836-6f7a3600-2771-11eb-867e-5384acf64501.PNG" width="500" height="auto">
 
 ### 6. Membuat Subdomain dengan alamat http://gunung.semeruyyy.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO & 
 ### 7. Membuat subdomain dengan nama http://naik.gunung.semeruyyy.pw, domain ini diarahkan ke IP Server PROBOLINGGO
