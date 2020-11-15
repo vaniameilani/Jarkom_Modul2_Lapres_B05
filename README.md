@@ -32,10 +32,14 @@
 <img src="https://user-images.githubusercontent.com/61219556/98794126-42f5af80-243b-11eb-8f91-8aa742186803.PNG" width="500" height="auto">
 
 ### 1. Membuat Domain alamat http://semeruyyy.pw
-- Buka UML MALANG dan update package list dengan command <br>
-  `apt-get update`. </br>
-- Install aplikasi bind9 pada UML MALANG dengan <br>
-   `apt-get install bind9 -y`. </br>
+- Buka UML MALANG dan update package list dengan command 
+```
+apt-get update
+```
+- Install aplikasi bind9 pada UML MALANG dengan 
+ ```
+ apt-get install bind9 -y
+```
 - Buka file dengan perintah `nano /etc/bind/named.conf.local`, lalu isi configurasi domain dengan syntax sebagai berikut : <br>
 ```
 zone "semerub05.pw" {
@@ -46,10 +50,14 @@ zone "semerub05.pw" {
 </br>
 <img src="https://user-images.githubusercontent.com/61219556/99037041-7e1bee00-25b5-11eb-8ff5-cbf05829be6c.PNG" width="500" height="auto">
 
-- Buat folder jarkom di dalam /etc/bind dengan perintah <br>
-  `mkdir /etc/bind/jarkom`. </br>
-- Copy file **db.local** ke dalam folder **jarkom** dan ubah namanya menjadi **semerub05.pw**. <br>
-  `cp /etc/bind/db.local /etc/bind/jarkom/semerub05.pw`. </br>
+- Buat folder jarkom di dalam /etc/bind dengan perintah 
+```
+mkdir /etc/bind/jarkom
+```
+- Copy file **db.local** ke dalam folder **jarkom** dan ubah namanya menjadi **semerub05.pw**.
+```
+cp /etc/bind/db.local /etc/bind/jarkom/semerub05.pw
+```
 - Buka file **semerub05.pw** dengan perintah `nano /etc/bind/jarkom/semerub05.pw`. Lalu, edit file dengan memasukkan IP PROBOLINGGO seperti berikut	:
 
 <img src="https://user-images.githubusercontent.com/61219556/99183483-b286da00-276e-11eb-9b54-85192eda99a1.PNG" width="500" height="auto">
@@ -64,15 +72,19 @@ zone "semerub05.pw" {
 
 <img src="https://user-images.githubusercontent.com/61219556/99183510-ecf07700-276e-11eb-8010-4f43c2babedb.PNG" width="500" height="auto">
 
-- Restart bind9 dengan perintah <br>
-  `service bind9 restart`. </br>
+- Restart bind9 dengan perintah 
+```
+service bind9 restart
+```
 - Lalu, buka UML client yaitu GRESIK atau SIDOARJO untuk melakukan `ping semerub05.pw` dan hasil harus mengarah ke host dengan IP PROBOLINGGO.
 
 <img src="https://user-images.githubusercontent.com/61219556/99183530-18736180-276f-11eb-860a-578b858cd374.PNG" width="500" height="auto">
 
 ### 3. Membuat subdomain http://penanjakan.semeruyyy.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO 
-- Buka UML MALANG, buka file **semerub05.pw** dan edit dengan menambahkan subdomain untuk **semerub05.pw** yang mengarah pada IP PROBOLINGGO <br>
-`nano /etc/bind/jarkom/semerub05.pw`</br>
+- Buka UML MALANG, buka file **semerub05.pw** dan edit dengan menambahkan subdomain untuk **semerub05.pw** yang mengarah pada IP PROBOLINGGO 
+```
+nano /etc/bind/jarkom/semerub05.pw
+```
 
 <img src="https://user-images.githubusercontent.com/61219556/99183555-583a4900-276f-11eb-9f9c-3f9fd041de5b.PNG" width="500" height="auto">
 
@@ -98,11 +110,12 @@ zone "83.151.10.in-addr.arpa" {
 <img src="https://user-images.githubusercontent.com/61219556/99183816-43f74b80-2771-11eb-9ccc-bc5a70a4dce1.PNG" width="500" height="auto">
 
 - Restart bind9 untuk menyimpan perubahan yang ada.
-- Untuk mengecek apakah konfigurasi sudah benar atau belum, lakukan perintah berikut pada UML client GRESIK atau SIDOARJO . <br>
-`apt-get update`</br><br>
-`apt-get install dnsutils`</br><br>
-`host -t PTR 10.151.83.52`</br>
-</br>
+- Untuk mengecek apakah konfigurasi sudah benar atau belum, lakukan perintah berikut pada UML client GRESIK atau SIDOARJO . 
+```
+apt-get update
+apt-get install dnsutils
+host -t PTR 10.151.83.52
+```
 <img src="https://user-images.githubusercontent.com/61219556/99183825-54a7c180-2771-11eb-8918-6d7a14f9f20f.PNG" width="500" height="auto">
 
 ### 5. Membuat DNS Server Slave pada MOJOKERTO
@@ -149,9 +162,11 @@ zone "semerub05.pw" {
 ```
 nano /etc/bind/named.conf.options
 ```
-- Kemudian comment **dnssec-validation auto;** dan tambahkan baris berikut pada `/etc/bind/named.conf.options`<br>
-`allow-query{any;};`
-
+- Kemudian comment **dnssec-validation auto;** dan tambahkan baris berikut pada 
+```
+/etc/bind/named.conf.options
+allow-query{any;};
+```
 <img src="https://user-images.githubusercontent.com/61219556/99142447-9a885b00-2687-11eb-9a83-806bb4ffa566.PNG" width="500" height="auto">
 
 - Kemudian, edit file `etc/bind/named.conf.local`
