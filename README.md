@@ -223,13 +223,60 @@ ServerAlias semerub05.pw
  <img src="https://user-images.githubusercontent.com/61219556/99143353-3b2e4900-268f-11eb-87c1-ef5fd878155e.PNG" width="500" height="auto">
  
 #### 10. Web http://penanjakan.semeruyyy.pw akan digunakan untuk menyimpan assets file yang memiliki DocumentRoot pada /var/www/penanjakan.semeruyyy.pw dan memiliki struktur folder sebagai berikut:
+```
 /var/www/penanjakan.semeruyyy.pw
                     /public/javascripts
                     /public/css
                     /public/images
                     /errors
+```
+- Pada UML PROBOLINGGO, pindah ke directory `/etc/apache2/sites-available`.
+- Copy file **default** menjadi nama file **penanjakan.semerub05.pw**, lalu tambahkan 
+```
+ServerName penanjakan.semerub05.pw
+ServerAlias penanjakan.semerub05.pw
+```
+- Ubah DocumentRoot menjadi `/var/www/penanjakan.semerub05.pw`.
+
+<img src="https://user-images.githubusercontent.com/61219556/99184020-b6b4f680-2772-11eb-89fc-340ec5bb8fde.PNG" width="500" height="auto">
+
+- Ketik perintah `a2ensite penanjakan.semerub05.pw`.
+- Gunakan perintah `service apache2 restart` untuk menyimpan perubahan yang ada.
+- Pindah ke directory `/var/www`
+- Lalu download folder yang dibutuhkan dengan perintah `wget 10.151.36.202/penanjakan.semeru.pw.zip`.
+- Unzip file dan ubah namanya menjadi `penanjakan.semerub05.pw`.
+
+<img src="https://user-images.githubusercontent.com/61219556/99184070-14494300-2773-11eb-9832-3083877e95c7.PNG" width="500" height="auto">
+
 #### 11. Pada folder /public dibolehkan directory listing namun untuk folder yang berada di dalamnya tidak dibolehkan. 
+- Pada UML PROBOLINGGO, pindah kembali ke directory `/etc/apache2/sites-available`.
+- Buka file **penanjakan.semerub05.pw** dan tambahkan :
+```
+<Directory /var/www/penanjakan.semerua11.pw/public>
+     Options +Indexes
+ </Directory>
+ <Directory /var/www/penanjakan.semerua11.pw/public/javascripts>
+     Options -Indexes
+ </Directory>
+ <Directory /var/www/penanjakan.semerua11.pw/public/css>
+     Options -Indexes
+ </Directory>
+ <Directory /var/www/penanjakan.semerua11.pw/public/images>
+     Options -Indexes
+ </Directory>
+ ```
+ 
+<img src="https://user-images.githubusercontent.com/61219556/99184115-5a060b80-2773-11eb-8588-7b61f9451171.PNG" width="500" height="auto">
+
+- Restart apache seperti perintah diatas. Maka, akan muncul hasil :
+
+<img src="https://user-images.githubusercontent.com/61219556/99184150-a0f40100-2773-11eb-976a-d1367d337b64.PNG" width="500" height="auto">
+<img src="https://user-images.githubusercontent.com/61219556/99184195-cda81880-2773-11eb-8915-81b67160c36d.PNG" width="500" height="auto">
+<img src="https://user-images.githubusercontent.com/61219556/99184208-e1ec1580-2773-11eb-9253-0c8a78063e78.PNG" width="500" height="auto">
+<img src="https://user-images.githubusercontent.com/61219556/99184234-f3cdb880-2773-11eb-924b-736bbb153d28.PNG" width="500" height="auto">
+
 #### 12. Disediakan file 404.html pada folder /errors untuk mengganti error default 404 dari Apache.
+- 
 #### 13. Dibuatkan konfigurasi virtual host agar ketika mengakses file assets menjadi http://penanjakan.semeruyyy.pw/js. Untuk web http://gunung.semeruyyy.pw belum dapat dikonfigurasi pada web server karena menunggu pengerjaan website selesai. 
 #### 14. Web http://naik.gunung.semeruyyy.pw sudah bisa diakses hanya dengan menggunakan port 8888. DocumentRoot web berada pada /var/www/naik.gunung.semeruyyy.pw. 
 #### 15. Membuat web http://naik.gunung.semeruyyy.pw agar diberi autentikasi password dengan username “semeru” dan password “kuynaikgunung” 
