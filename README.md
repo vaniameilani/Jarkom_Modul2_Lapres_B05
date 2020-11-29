@@ -378,7 +378,7 @@ htpasswd -c /etc/apache2/.htpasswd semeru
 <img src="https://user-images.githubusercontent.com/61219556/99184959-570e1980-2779-11eb-9e02-053ac438221c.PNG" width="500" height="auto">
 
 - Simpan perubahan dengan me-restart apache
-- Buka browser dan akses `penanjakan.semerua11.pw/public/images/tessemeru.jpg ` akan langsung mengarah pada `penanjakan.semerua11.pw/public/images/semeru.jpg`.
+- Buka browser dan akses `penanjakan.semerua11.pw/public/images/tessemeru.jpg ` akan langsung mengarah pada `penanjakan.semerua11.pw/public/images/semeru.jpg`
 
 <img src="https://user-images.githubusercontent.com/61219556/99184960-58d7dd00-2779-11eb-8e48-d23116fa3b4f.PNG" width="500" height="auto">
 
